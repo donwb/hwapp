@@ -7,7 +7,7 @@ namespace hwapp
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting....");
 
             using (var db = new mapContext()){
                 
