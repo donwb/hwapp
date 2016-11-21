@@ -34,6 +34,17 @@ namespace hwapp
                         Console.WriteLine("\t" + a.Actions.Action);
                     }
                 }
+
+                // Just me
+                var me = db.Mapuser
+                .Include(ua => ua.Useractions)
+                .Single(u => u.Email.ToString() == "don.browning@turner.com");
+                
+                Console.WriteLine(me.Email);
+                foreach (var a in me.Useractions) {
+                    Console.WriteLine("\t" + a.Actions.Action);
+                }
+
             }
             
             Console.WriteLine("Done...");
