@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace hwapp
@@ -10,13 +12,17 @@ namespace hwapp
             Console.WriteLine("Starting....");
 
             using (var db = new mapContext()){
+
+                var users = db.Useractions.Include(mu => mu.User)
+                .Include(act => act.Actions)
+                .ToList();
                 
-                foreach (var a in db.Useractions) {
-                
-                    Console.WriteLine(a.Userid);
+                foreach (var u in users) {
+                    Console.WriteLine(u.User.Email + " ----- " + u.Actions.Action);
                 }
             }
             
+            Console.WriteLine("Done...");
             Console.ReadLine();
         }
     }
