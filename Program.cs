@@ -21,12 +21,25 @@ namespace hwapp
 
                 AddUser(db, "traci@mariettahometeam.com");
 */
-                AddItem(db, "traci@mariettahometeam.com");
+                //AddItem(db, "traci@mariettahometeam.com");
+
+                var dbVars = CheckEnvVars();
+
+                Console.WriteLine("User: " + dbVars.Item1 + " " + dbVars.Item2);
+
 
             }
             
             Console.WriteLine("Done...");
             Console.ReadLine();
+        }
+
+        private static Tuple<string, string> CheckEnvVars() {
+            var user = Environment.GetEnvironmentVariable("DB_USER");
+            var pass = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            
+            return new Tuple<string, string>(user, pass);
+
         }
 
         private static void AllUserActions(mapContext db) {
