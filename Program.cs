@@ -78,21 +78,25 @@ namespace hwapp
         }
 
         private static void AddItem(mapContext db, string who) {
-            // Just me
+            // get the user
             var me = db.Mapuser
             .Single(u => u.Email.ToString() == who);
 
+            // get the first action
             var action = db.Actions
             .Single(i => i.Id == 1);
 
+            // New up an object
             var ua = new Useractions();
             ua.Actions = action;
             ua.User = me;
             ua.Actiondate = DateTime.Now;
 
+            // Save it
             db.Useractions.Add(ua);
             db.SaveChanges();
 
+            // if it returns an ID, we're good
             Console.WriteLine("Done: " + ua.Id);
 
         }
