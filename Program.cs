@@ -15,23 +15,22 @@ namespace hwapp
             var dbVars = CheckEnvVars();
             if(dbVars.Item1 == null || dbVars.Item2 == null) {
                 Console.WriteLine("Environment vars not set, stopping....");
+                Environment.Exit(1);
             } else {
                 Console.WriteLine("User: " + dbVars.Item1 + " Pass:" + dbVars.Item2);
             }
             
-
             using (var db = new mapContext()){
-/*
+
                 AllUserActions(db);
 
                 ViaMapUsers(db);
 
                 JustMe(db);
 
-                AddUser(db, "traci@mariettahometeam.com");
-*/
-                //AddItem(db, "traci@mariettahometeam.com");
+                // AddUser(db, "traci@mariettahometeam.com");
 
+                // AddItem(db, "traci@mariettahometeam.com");
             }
             
             Console.WriteLine("Done...");
