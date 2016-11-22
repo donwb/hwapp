@@ -12,13 +12,16 @@ namespace hwapp
             Console.WriteLine("Starting....");
 
             using (var db = new mapContext()){
-
+/*
                 AllUserActions(db);
 
                 ViaMapUsers(db);
 
                 JustMe(db);
 
+                AddUser(db, "traci@mariettahometeam.com");
+*/
+                AddItem(db, "traci@mariettahometeam.com");
 
             }
             
@@ -62,6 +65,36 @@ namespace hwapp
             foreach (var a in me.Useractions) {
                 Console.WriteLine("\t" + a.Actions.Action);
             }
+        }
+
+        private static void AddUser(mapContext db, string emailAddress) {
+
+            Mapuser mu = new Mapuser{
+                Email = emailAddress};
+                db.Mapuser.Add(mu);
+                db.SaveChanges();
+
+                Console.WriteLine(mu.Id + " " + mu.Email);
+        }
+
+        private static void AddItem(mapContext db, string who) {
+            // Just me
+            var me = db.Mapuser
+            .Single(u => u.Email.ToString() == who);
+
+            var action = db.Actions
+            .Single(i => i.Id == 1);
+
+            var ua = new Useractions();
+            ua.Actions = action;
+            ua.User = me;
+            ua.Actiondate = DateTime.Now;
+
+            db.Useractions.Add(ua);
+            db.SaveChanges();
+
+            Console.WriteLine("Done: " + ua.Id);
+
         }
     }
 }
