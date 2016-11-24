@@ -1,7 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace hwapp
+namespace hwapp.data
 {
     /*
      * Not sure this is the best way to replace the connect

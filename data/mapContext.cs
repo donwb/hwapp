@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace hwapp
+namespace hwapp.data
 {
     public partial class mapContext : DbContext
     {

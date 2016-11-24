@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-
+using hwapp.data;
 
 namespace hwapp
 {

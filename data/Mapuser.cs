@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace hwapp
+namespace hwapp.data
 {
-    public partial class Actions
+    public partial class Mapuser
     {
-        public Actions()
+        public Mapuser()
         {
             Useractions = new HashSet<Useractions>();
         }
 
         public int Id { get; set; }
-        public string Action { get; set; }
-        public int Points { get; set; }
+        public string Email { get; set; }
 
         public virtual ICollection<Useractions> Useractions { get; set; }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace hwapp
+namespace hwapp.data
 {
     public partial class Useractions
     {
