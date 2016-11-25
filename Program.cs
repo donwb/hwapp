@@ -19,7 +19,13 @@ namespace hwapp
             } else {
                 Console.WriteLine("User: " + dbVars.Item1 + " Pass:" + dbVars.Item2);
             }
+
+            var controller = new MapController();
+            controller.AllUserActions();
+            controller.ViaMapUsers();
+            controller.JustMe();
             
+            /*
             using (var db = new mapContext()){
 
                 AllUserActions(db);
@@ -28,11 +34,11 @@ namespace hwapp
 
                 JustMe(db);
 
-                // AddUser(db, "traci@mariettahometeam.com");
+                AddUser(db, "traci@mariettahometeam.com");
 
-                // AddItem(db, "traci@mariettahometeam.com");
+                AddItem(db, "traci@mariettahometeam.com");
             }
-            
+            */
             Console.WriteLine("Done...");
             Console.ReadLine();
         }
