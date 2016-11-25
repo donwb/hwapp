@@ -24,19 +24,29 @@ namespace hwapp.data
 
         public void ViaMapUsers() 
         {
-            using(var db = new mapContext())
+            using(var ctx = new mapContext())
             {
-                // Go  through the MapUsers to then get the Actions
-                var fromUsers = db.Mapuser
+                var mapUsers = ctx.Mapuser
                 .Include(ua => ua.Useractions)
                 .ToList();
+
                 
-                foreach (var u in fromUsers) {
-                    Console.WriteLine(u.Email);
-                    foreach(var a in u.Useractions){
-                        Console.WriteLine("\t" + a.Actions.Action);
+
+                foreach(var u in mapUsers)
+                {
+                    Console.WriteLine("User: "+ u.Email);
+                    
+                    foreach(var act in u.Useractions)
+                    {
+                        // This killed me!
+                        ctx.Entry(act)
+                        .Reference(a => a.Actions)
+                        .Load();
+
+                        Console.WriteLine("Action: " + act.Actions.Action);
                     }
                 }
+                
             }
         }
 
@@ -51,6 +61,10 @@ namespace hwapp.data
                 
                 Console.WriteLine(me.Email);
                 foreach (var a in me.Useractions) {
+                    db.Entry(a)
+                    .Reference(act => act.Actions)
+                    .Load();
+                    
                     Console.WriteLine("\t" + a.Actions.Action);
                 }
             }
